@@ -53,10 +53,11 @@ int main(int argc, char *argv[]) {
     while (fgets(buffer, sizeof(buffer), f)) {
       write(client_socket, buffer, strlen(buffer));
     }
+    
+    fclose(f);
+    close(client_socket);
   }
 
-  fclose(f);
-  close(client_socket);
 
   printf("exit binding the socket to port 8080");
 }
