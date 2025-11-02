@@ -40,6 +40,14 @@ int main(int argc, char *argv[]) {
       exit(EXIT_FAILURE);
     }
 
+    char request[1024];
+    read(client_socket, request, sizeof(request));
+    printf("%s\n", request);
+
+    char* http_headers_response = "HTTP/1.1 200 OK\n Content-Type: text/html";
+
+    write(client_socket, http_headers_response, strlen(http_headers_response));
+
     f = fopen("index.html", "r");
     char buffer[1024];
     while (fgets(buffer, sizeof(buffer), f)) {
